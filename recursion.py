@@ -8,7 +8,17 @@ def sum(n):
     if(n==0):
         return n
     else:
-        print(n+sum(n-1))
         return n+sum(n-1)
    
 print(sum(10))
+# print array of element
+def printArray(arr,start,end):
+    if(start==end):
+        print(arr[start])
+    else:
+        print(arr[start])
+        printArray(arr, start+1, end)
+
+arr=[1,2,3,4,5,6,7,8,9,10]
+printArray(arr, 0, len(arr)-1)
+
