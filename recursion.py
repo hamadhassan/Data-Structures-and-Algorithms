@@ -9,8 +9,8 @@ def sum(n):
         return n
     else:
         return n+sum(n-1)
-   
-print(sum(10))
+msg=sum(10)
+print(msg)  
 # print array of element
 def printArray(arr,start,end):
     if(start==end):
@@ -29,10 +29,13 @@ def power(n,k):
         return n*power(n,k-1)
 result=power(2, 5)
 print(result)
-# other
-num=2
-power=5
-result=1
-for i in range(power):
-    result*=num
-print(result)
+#Factorial of Number using recursion
+def recur_factorial(num):
+    if(num<0):
+        return -1
+    elif (num == 0 or num == 1):
+        return 1
+    else:
+        return num*recur_factorial(num-1)
+num=int(input("Enter a number: "))
+print("The factorial of",num,"is",recur_factorial(num))
