@@ -29,7 +29,7 @@ def power(n,k):
         return n*power(n,k-1)
 result=power(2, 5)
 print(result)
-#Factorial of Number using recursion
+#factorial of number using recursion
 def recur_factorial(num):
     if(num<0):
         return -1
