@@ -18,3 +18,12 @@ def SearchA(Arr,x):
         if(x==Arr[i]):
             searchArr.append(i)
     return searchArr
+#Prob3
+def Minimum(Arr,starting,ending):
+    minNum=Arr[starting]
+    index=starting;
+    for starting in range(ending+1):
+        if(Arr[starting]<minNum):
+            minNum=Arr[starting]
+            index=starting;
+    return index
