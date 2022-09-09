@@ -61,7 +61,7 @@ def SumRecursive(number):
         return number
     else:
         return number%10+SumRecursive(int(number/10))
-#Prob6
+#Prob7
     #Row sum
 def RowWiseSum(Mat):
     row=[]
@@ -73,7 +73,7 @@ def ColumnWisSum(Mat):
     col=[]
     col=np.sum(Mat,axis=0)
     return col
-#Prob7
+#Prob8
 def SortedMerge(Arr1,Arr2):
     Arr3 = [None]*(len(Arr1)+len(Arr2))
     a1=len(Arr1)
@@ -99,3 +99,11 @@ def SortedMerge(Arr1,Arr2):
         k+=1
         j+=1
     return Arr3
+#Prob9
+def PalindeomRecursie(str):
+    if(len(str)<2):
+        return True
+    elif str[0]==str[len(str)-1]:
+        return PalindeomRecursie(str[1:len(str)-1])
+    else:
+        return False
