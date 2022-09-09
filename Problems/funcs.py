@@ -11,3 +11,10 @@ def SearchA(Arr,x):
         if(x==Arr[i]):
             searchArr.append(i)
     return searchArr
+#Prob2
+def SearchA(Arr,x):
+    searchArr=[]
+    for i in range(len(Arr)):
+        if(x==Arr[i]):
+            searchArr.append(i)
+    return searchArr
