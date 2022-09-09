@@ -67,7 +67,6 @@ def RowWiseSum(Mat):
     row=[]
     row=np.sum(Mat, axis = 1)
     return row
-
     #Column sum 
 def ColumnWisSum(Mat):
     col=[]
@@ -107,3 +106,37 @@ def PalindeomRecursie(str):
         return PalindeomRecursie(str[1:len(str)-1])
     else:
         return False
+#Prob10
+def Sort10(Arr):
+    positive=[];
+    negative=[];
+    for i in range(len(Arr)):
+        if(Arr[i]>=0):
+            positive.append(Arr[i])
+        else:
+            negative.append(Arr[i])
+    positive.sort()
+    negative.sort()
+    mergeArr=[None]*(len(positive)+len(negative))
+    shuffle=1 #1 means odd turn   #2 means even trun
+    n=0#negative number index
+    p=0#positive number index
+    lenN=len(negative)#nagative list length
+    lenP=len(positive)#positive list length
+    for i in range(len(Arr)):
+        if(shuffle==1):
+            if(lenN>0):
+                mergeArr[i]=negative[n]
+                n+=1
+                shuffle=2
+                lenN-=1
+                if(lenP==0):
+                    shuffle=1
+        elif(shuffle==2):
+            mergeArr[i]=positive[p]
+            p+=1
+            shuffle=1
+            lenP-=1
+            if(lenN==0):
+                shuffle=2     
+    return mergeArr
