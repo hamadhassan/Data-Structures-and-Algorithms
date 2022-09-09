@@ -46,3 +46,17 @@ def StringReverse(str,starting,ending):
     str=str[starting:ending]
     str=str[::-1]
     return str
+#Prob6
+    #Iterative Method
+def SumIterative(number):
+    sum=0
+    for i in range(number):
+        sum+=number%10;
+        number=int(number/10)
+    return sum
+    #Sum Recursive
+def SumRecursive(number):
+    if(number<=10):
+        return number
+    else:
+        return number%10+SumRecursive(int(number/10))
