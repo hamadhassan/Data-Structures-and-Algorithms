@@ -4,6 +4,7 @@ Created on Fri Sep  9 5:45:15 2022
 
 @author: Hammad Hassan
 """
+import numpy as np 
 #Prob1
 def SearchA(Arr,x):
     searchArr=[]
@@ -60,3 +61,15 @@ def SumRecursive(number):
         return number
     else:
         return number%10+SumRecursive(int(number/10))
+#Prob6
+    #Row sum
+def RowWiseSum(Mat):
+    row=[]
+    row=np.sum(Mat, axis = 1)
+    return row
+
+    #Column sum 
+def ColumnWisSum(Mat):
+    col=[]
+    col=np.sum(Mat,axis=0)
+    return col
