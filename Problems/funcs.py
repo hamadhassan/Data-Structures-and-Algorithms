@@ -73,3 +73,29 @@ def ColumnWisSum(Mat):
     col=[]
     col=np.sum(Mat,axis=0)
     return col
+#Prob7
+def SortedMerge(Arr1,Arr2):
+    Arr3 = [None]*(len(Arr1)+len(Arr2))
+    a1=len(Arr1)
+    a2=len(Arr2)
+    i=0 
+    j=0
+    k=0
+    while(i<a1 and j<a2):
+        if(Arr1[i]<Arr2[j]):
+            Arr3[k]=Arr1[i]
+            k+=1
+            i+=1
+        else:
+            Arr3[k]=Arr2[j]
+            k+=1
+            j+=1
+    while (i<a1):
+        Arr3[k]=Arr1[i]
+        k+=1
+        i+=1
+    while(j<a2):
+        Arr3[k]=Arr2[j]
+        k+=1
+        j+=1
+    return Arr3
