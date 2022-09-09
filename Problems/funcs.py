@@ -41,3 +41,8 @@ def Sort4(Arr):
                 Arr[i] = Arr[j]
                 Arr[j] = temp
     return Arr
+#Prob5
+def StringReverse(str,starting,ending):
+    str=str[starting:ending]
+    str=str[::-1]
+    return str
