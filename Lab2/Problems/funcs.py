@@ -28,3 +28,12 @@ def BubbleSort(array,start,end):
             if array[j] > array[j+1]:
                 array[j], array[j+1] = array[j+1], array[j]
     return array
+#Problem6
+def SelectionSort(array,start,end):
+    for i in range(start,end):
+        min_index = i
+        for j in range(i+1, end):
+            if array[j] < array[min_index]:
+                min_index = j
+        (array[i], array[min_index]) = (array[min_index], array[i])
+    return array
