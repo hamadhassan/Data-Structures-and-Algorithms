@@ -16,7 +16,7 @@ end_time=t.time() #Time End
 run_time=end_time-start_time #Calculate run time
 print(run_time)
 #Write sorted array into file
-f=open(file=r"D:\COMPUTER SCIENCE\3rd Semester\Data Structures and Algorithms-DSA\Lab\Lab2\SortedInsertionSort.csv",mode="w")
+f=open(file=r"D:\COMPUTER SCIENCE\3rd Semester\Data Structures and Algorithms-DSA\Labs\Lab2\Problems\SortedInsertionSort.csv",mode="w")
 for i in range(len(sortedArray)):
     f.write(str(sortedArray[i])+",")
     f.write("\n")

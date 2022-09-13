@@ -23,15 +23,8 @@ def InsertionSort(array,start,end):
     return array
 #Problem5
 def BubbleSort(array,start,end):
-    i=end
-    sorted=False
-    while((i>=1) and (not(sorted))):
-        sorted=True
-        for j in range(start,i):
-            if(array[j-1]>array[j]):
-                temp=array[j-1]
-                array[j-1]=array[j]
-                array[j]=temp
-                sorted=False
-    i-=1
+    for i in range(start,end):
+        for j in range(0, end-i-1):
+            if array[j] > array[j+1]:
+                array[j], array[j+1] = array[j+1], array[j]
     return array
