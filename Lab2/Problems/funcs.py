@@ -21,6 +21,44 @@ def InsertionSort(array,start,end):
             j=j-1
         array[j+1]=key
     return array
+#Problem3
+import numpy as np
+#A=array p=start r=end q=mid
+def Merge(array,start,mid,end):
+    n1=mid-start+1
+    n2=end-mid
+    L=[0]*(n1+1)
+    R=[0]*(n2+1)
+    for i in range(n1):
+        L[i]=array[start+i]
+    for j in range(n2):
+        R[j]=array[mid+j+1]
+    L[len(L)-1]=np.inf
+    R[len(R)-1]=np.inf
+    i=j=0
+    for s in range(start,end+1):
+        if(L[i]<=R[j]):
+            array[s]=L[i]
+            i+=1
+        else:
+            array[s]=R[j]
+            j=j+1
+def MergeSort(array, start, end):
+    if(start!=end):     
+        mid=start+(end-start)//2
+        MergeSort(array, start, mid)
+        MergeSort(array, mid+1, end)
+        Merge(array, start, mid, end)
+    else:
+        return
+#Problem4
+def HybrideMergeSort(array,start,end):
+    n=end-start
+    if(n<43):
+        InsertionSort(array, start, 43)
+        MergeSort(array, 43, end)
+    else:
+        MergeSort(array, start, end)
 #Problem5
 def BubbleSort(array,start,end):
     for i in range(start,end):
