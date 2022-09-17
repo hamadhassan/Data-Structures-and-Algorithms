@@ -11,7 +11,7 @@ import time as t
 #Check the time for process 
 start_time=t.time() #Time Start
 randomArray=f.RandomArray(30000)
-sortedArray=f.InsertionSort(randomArray,0,len(randomArray))
+sortedArray=f.InsertionSort(randomArray,1,len(randomArray))
 end_time=t.time() #Time End
 run_time=end_time-start_time #Calculate run time
 print(run_time)

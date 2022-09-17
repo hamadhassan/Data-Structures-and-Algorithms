@@ -29,6 +29,7 @@ for i in range(len(values)):
     run_time=end_time-start_time #Calculate run time
     ins.append(run_time)
     print("Insertion Sort",ins)
+
 #Merge Sort
 for i in range(len(values)):
     #Check the time for process 
@@ -39,6 +40,7 @@ for i in range(len(values)):
     run_time=end_time-start_time #Calculate run time
     m.append(run_time)
     print("Merge Sort",m)
+
 #Hybrid Merge sort
 for i in range(len(values)):
     #Check the time for process 
@@ -49,6 +51,7 @@ for i in range(len(values)):
     run_time=end_time-start_time #Calculate run time
     h.append(run_time)
     print("Hybrid Merge sort",h)
+
 #Selection Sort 
 for i in range(len(values)):
     #Check the time for process 
@@ -71,6 +74,8 @@ for i in range(len(values)):
     print("Bubble Sort ",b)
 
 
+
+print(ins)
 f=open(file="RunTime.csv",mode="w")
 for (i,m,h,s,b) in zip(ins,m,h,s,b):
     print("I=",i,"M=",m,"H=",h,"S=",s,"B=",b)

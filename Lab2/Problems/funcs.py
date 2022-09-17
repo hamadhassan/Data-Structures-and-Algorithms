@@ -4,12 +4,12 @@ Created on Tue Sep 13 13:24:37 2022
 
 @author: Hammad Hassan
 """
-import random as r
+import random
 #Problem1
 def RandomArray(size):
     arr=[]
     for i in range(size):
-        arr.append(r.randint(0, size))
+        arr.append(random.randint(0, size))
     return arr
 #Problem2
 def InsertionSort(array,start,end):
@@ -75,3 +75,9 @@ def SelectionSort(array,start,end):
                 min_index = j
         (array[i], array[min_index]) = (array[min_index], array[i])
     return array
+#Poblem8
+def ShuffleArray(array,start,end):
+    for i in range(end-1,0,-1):
+          j = random.randint(0,i+1)
+          array[i],array[j] = array[j],array[i]
+          return array
