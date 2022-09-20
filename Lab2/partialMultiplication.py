@@ -26,7 +26,7 @@ def partialMult(arr1,arr2):
     for i in range(len(arr)):
         totalSum+=arr[i]   
     return totalSum
-arr1=["1","2","3","4","5","9","4","1","2","3","4","5","9","4","4","9","1","9"]
-arr2=["1","2","3","4","5","9","4","1","2","3","4","5","9","4","4","9","1","9"]
+arr1=["2","2"]
+arr2=["4","5"]
 print(partialMult(arr1,arr2))
 
