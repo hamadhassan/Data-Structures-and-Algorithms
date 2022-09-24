@@ -170,7 +170,28 @@ def Multiply_Recursive(a,b):
         total=total+int(sum[i])
     return total
 print(Multiply_Recursive(22,45))
- 
+#(v)
+def Karatsuba_Recursive(x,y):
+    #base case
+    if x < 10 and y < 10: # in other words, if x and y are single digits
+        return x*y
+
+    n = max(len(str(x)), len(str(y)))
+    m = ceil(n/2)   #Cast n into a float because n might lie outside the representable range of integers.
+
+    xLeft  = floor(x / 10**m)
+    xRight = x % (10**m)
+    yLeft = floor(y / 10**m)
+    yRight = y % (10**m)
+
+    #recursive steps
+    ac = Karatsuba_Recursive(xLeft,yLeft)
+    bd = Karatsuba_Recursive(xRight,yRight)
+    ad_plus_bc_and_ac_minus_bd = Karatsuba_Recursive(xLeft + xRight, yLeft + yRight) - ac - bd
+
+    return ac*(10**(m*2)) + ad_plus_bc_and_ac_minus_bd*(10**m) + bd
+
+print(Karatsuba_Recursive(22,45))
  
 
 
