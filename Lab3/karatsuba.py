@@ -85,8 +85,55 @@ def Multiply_string(a,b):
         sum+=result[i]
     return sum                               
 print(Multiply_string("22","45"))
+#(iii)
+def Visualize_Karatsuba(a,b):
+    if a < 10 and b< 10: # in other words, if x and y are single digits
+        return a*b
+    x=str(a)
+    y=str(b)
+    result=[]
+    isReminder=True
+    rowResult=""
+    t=0
+    o=0
+    sum=0
+    for i in  reversed(range(len(y))):
+        for z in range(t):
+            rowResult=rowResult+"0"
+        for j in reversed(range(len(x))):
+            rowMul=int(y[i])*int(x[j])
+            if(rowMul>9):
+                reminder=rowMul%10
+                carry=rowMul//10
+                if(isReminder):
+                    rowResult=rowResult+str(reminder)
+                    isReminder=False
+                else:
+                    rowMul=rowMul+carry
+                    rowResult=str(rowMul)+rowResult
+                    if(j==0):
+                        result.append(int(rowResult))
+                        rowResult=""
+                        t+=1
+            else:
+                rowResult=str(rowMul)+rowResult
+                o+=1
+                if(j==0):
+                    result.append(int(rowResult))
+                    rowResult=""
+                    t+=1 
+    print(a)
+    print(b)
+    print("-----")
+    for i in range(len(result)):
+        sum+=result[i]
+        print(result[i])
+    print("-----")
+    print(sum)                        
+Visualize_Karatsuba(22,45)
+       
 
-    
+ 
  
 
 
