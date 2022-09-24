@@ -45,7 +45,7 @@ def Multiply_integer(a,b):
     for i in range(len(result)):
         sum+=result[i]
     return sum                               
-print(Multiply_integer(22,45))
+#print(Multiply_integer(22,45))
 #(ii)
 def Multiply_string(a,b):
     if int(a) < 10 and int(b)< 10: # in other words, if x and y are single digits
@@ -84,7 +84,7 @@ def Multiply_string(a,b):
     for i in range(len(result)):
         sum+=result[i]
     return sum                               
-print(Multiply_string("22","45"))
+#print(Multiply_string("22","45"))
 #(iii)
 def Visualize_Karatsuba(a,b):
     if a < 10 and b< 10: # in other words, if x and y are single digits
@@ -130,7 +130,7 @@ def Visualize_Karatsuba(a,b):
         print(result[i])
     print("-----")
     print(sum)                        
-Visualize_Karatsuba(22,45)
+#Visualize_Karatsuba(22,45)
        
 #(iv)
 arr1=[]
@@ -169,7 +169,7 @@ def Multiply_Recursive(a,b):
     for i in range(len(sum)):
         total=total+int(sum[i])
     return total
-print(Multiply_Recursive(22,45))
+#print(Multiply_Recursive(22,45))
 #(v)
 def Karatsuba_Recursive(x,y):
     #base case
@@ -191,7 +191,35 @@ def Karatsuba_Recursive(x,y):
 
     return ac*(10**(m*2)) + ad_plus_bc_and_ac_minus_bd*(10**m) + bd
 
-print(Karatsuba_Recursive(22,45))
- 
+#print(Karatsuba_Recursive(22,45))
+#(vi)
+def Multiply2(x,y):
+    #base case
+    if x < 2 and y < 2: # in other words, if x and y are single digits
+        return x*y
+    n = max(len(str(x)), len(str(y)))
+    m = ceil(n/2)   #Cast n into a float because n might lie outside the representable range of integers.
+    xLeft  = floor(x / 2**m)
+    xRight = x % (2**m)
+    yLeft = floor(y / 2**m)
+    yRight = y % (2**m)
+    #recursive steps
+    ac = Multiply2(xLeft,yLeft)
+    bd = Multiply2(xRight,yRight)
+    ad_plus_bc_and_ac_minus_bd = Multiply2(xLeft + xRight, yLeft + yRight) - ac - bd
+    return ac*(2**(m*2)) + ad_plus_bc_and_ac_minus_bd*(2**m) + bd
+#Validate
+def ValidateMultiply2():
+    x=input("Enter First Number: ")
+    y=input("Enter Second Number: ")
+    isValidate=True
+    for i in range(len(x)):
+        if(int(x[i])>=2):
+            isValidate=False
+    if(isValidate==True):
+        print(Multiply2(int(x),int(y)))
+    else:
+        print("Invalid Input")
+#ValidateMultiply2()
 
 
