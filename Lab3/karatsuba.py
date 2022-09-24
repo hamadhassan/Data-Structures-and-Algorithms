@@ -4,43 +4,88 @@ Created on Tue Sep 20 13:48:19 2022
 
 @author: Hammad Hassan
 """
-arr1=[]
-arr2=[]
-sum=[]
-
-def parMult(a,b):
-    if(a<9 or b<9):
-        arr1.append(a%10)
-        arr2.append(b%10)
-    else:
-        arr1.append(a%10)
-        a=a//10
-        arr2.append(b%10)
-        b=b//10
-        return(parMult(a,b))
-    carry=0
-    toadd1=""
-    for i in range(len(arr2)):
-        for j in range(len(arr1)):
-            mul=arr2[i]*arr1[j]
-            if(mul>=10):
-              carry=mul//10
-              if(carry>=1 and j<len(arr2)-1):
-                  mul+=carry
-                  toadd=str(mul%10)
-              else:
-                  toadd+=str(mul)
-                  sum.append(toadd) 
-                  
-            else:
-                if(j<len(arr2)-1):
-                    toadd1+=str(mul)+"0"                 
+#(i)
+from math import ceil, floor
+def Multiply_integer(a,b):
+    if a < 10 and b< 10: # in other words, if x and y are single digits
+        return a*b
+    x=str(a)
+    y=str(b)
+    result=[]
+    isReminder=True
+    rowResult=""
+    t=0
+    o=0
+    sum=0
+    for i in  reversed(range(len(y))):
+        for z in range(t):
+            rowResult=rowResult+"0"
+        for j in reversed(range(len(x))):
+            rowMul=int(y[i])*int(x[j])
+            if(rowMul>9):
+                reminder=rowMul%10
+                carry=rowMul//10
+                if(isReminder):
+                    rowResult=rowResult+str(reminder)
+                    isReminder=False
                 else:
-                    sum.append(str(mul)+toadd1)
-    total=0
-    for i in range(len(sum)):
-        total=total+int(sum[i])
-    print(sum)
-    print(total)
+                    rowMul=rowMul+carry
+                    rowResult=str(rowMul)+rowResult
+                    if(j==0):
+                        result.append(int(rowResult))
+                        rowResult=""
+                        t+=1
+            else:
+                rowResult=str(rowMul)+rowResult
+                o+=1
+                if(j==0):
+                    result.append(int(rowResult))
+                    rowResult=""
+                    t+=1
+    for i in range(len(result)):
+        sum+=result[i]
+    return sum                               
+print(Multiply_integer(22,45))
+#(ii)
+def Multiply_string(a,b):
+    if int(a) < 10 and int(b)< 10: # in other words, if x and y are single digits
+        return a*b
+    result=[]
+    isReminder=True
+    rowResult=""
+    t=0
+    o=0
+    sum=0
+    for i in  reversed(range(len(b))):
+        for z in range(t):
+            rowResult=rowResult+"0"
+        for j in reversed(range(len(a))):
+            rowMul=int(b[i])*int(a[j])
+            if(rowMul>9):
+                reminder=rowMul%10
+                carry=rowMul//10
+                if(isReminder):
+                    rowResult=rowResult+str(reminder)
+                    isReminder=False
+                else:
+                    rowMul=rowMul+carry
+                    rowResult=str(rowMul)+rowResult
+                    if(j==0):
+                        result.append(int(rowResult))
+                        rowResult=""
+                        t+=1
+            else:
+                rowResult=str(rowMul)+rowResult
+                o+=1
+                if(j==0):
+                    result.append(int(rowResult))
+                    rowResult=""
+                    t+=1
+    for i in range(len(result)):
+        sum+=result[i]
+    return sum                               
+print(Multiply_string("22","45"))
     
-parMult(22,45)
+ 
+
+
