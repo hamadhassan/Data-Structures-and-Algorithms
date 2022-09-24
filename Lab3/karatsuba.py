@@ -221,5 +221,26 @@ def ValidateMultiply2():
     else:
         print("Invalid Input")
 #ValidateMultiply2()
+#(vii)
+def Multiply16(x,y):
+    #base case
+    if x < 16 and y < 16: # in other words, if x and y are single digits
+        return x*y
 
+    n = max(len(str(x)), len(str(y)))
+    m = ceil(n/2)   #Cast n into a float because n might lie outside the representable range of integers.
+
+    xLeft  = floor(x / 16**m)
+    xRight = x % (16**m)
+    yLeft = floor(y / 16**m)
+    yRight = y % (16**m)
+
+    #recursive steps
+    ac = Multiply16(xLeft,yLeft)
+    bd = Multiply16(xRight,yRight)
+    ad_plus_bc_and_ac_minus_bd = Multiply16(xLeft + xRight, yLeft + yRight) - ac - bd
+
+    return int(ac*(16**(m*2)) + ad_plus_bc_and_ac_minus_bd*(16**m) + bd)
+    
+#print(Multiply16(101,110))
 
