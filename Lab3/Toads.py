@@ -21,3 +21,10 @@ class Toad:
                     return True
                 else:
                     return False
+                
+def getPopulation(n):
+    for i in range(n):
+        Toad(is_trustworthy)        
+    
+#def TruthFulToadsA(population):
+    
