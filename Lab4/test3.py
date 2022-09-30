@@ -16,26 +16,32 @@ A=[[3,4,5],[2,5,7]]
 starting_index=(0,0)
 row=2 #Number of row wants to print
 column=3 #Number of Column wants to print
-printMatrix(A,starting_index,row,column) 
+# printMatrix(A,starting_index,row,column) 
 ##----------------------- (2) ----------------------------##
 def MatAdd(A,B): #Function only work for square matrix
     n=len(A)
-    size=n
-    result = [[0]*size]*size
+    result = [[0]*n]*n
     if(n==len(B)):
         for i in range(n):
             for j in range(n):
                 for k in range(n):
-                    result[i][j]=result[i][j]+(int(A[i][k])*int(B[k][j]))
-                    
+                    result[i][j]=result[i][j]+(int(A[i][k])*int(B[k][j]))  
     return result
 A=[(3,4),(2,5)]
 B=[(3,4),(2,5)]
 result=MatAdd(A,B)
 printMatrix(result,(0,0),2,2)
+##----------------------- (3) ----------------------------##
+def MatAddPartial(A,B,start,size): #Function only work for square matrix
+    result = [[0]*size]*size
+    for i in range(start,size):
+        for j in range(start,size):
+            for k in range(start,size):
+                result[i][j]=result[i][j]+(int(A[i][k])*int(B[k][j]))  
+    return result                
+A=[(3,4),(2,5)]
+B=[(3,4),(2,5)]
+result=MatAddPartial(A,B,0,2)  
+printMatrix(result,(0,0),2,2)               
 
-                
-                
-                
-                
                 
