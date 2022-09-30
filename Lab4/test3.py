@@ -20,6 +20,34 @@ column=3 #Number of Column wants to print
 ##----------------------- (2) ----------------------------##
 def MatAdd(A,B): #Function only work for square matrix
     n=len(A)
+    result = [0]*n
+    if(n==len(B)):
+        for i in range(n):
+            sum=0
+            for k in range(n):
+                sum+=(int(A[i][k])+int(B[i][k]))
+            result[i]=sum
+    return result
+A=[(3,4),(2,5)]
+B=[(3,4),(2,5)]
+result=MatAdd(A,B)
+# print(result)
+##----------------------- (3) ----------------------------##
+def MatAddPartial(A,B,start,size): 
+    result =[]
+    for i in range(start,size):
+        sum=0
+        for k in range(start,size):
+            sum+=(int(A[i][k])+int(B[i][k]))
+        result.append(sum)
+    return result         
+A=[(3,4),(2,5)]
+B=[(3,4),(2,5)]
+result=MatAddPartial(A,B,0,1)  
+# print(result)              
+##----------------------- (4) ----------------------------##           
+def MatMul(A,B): #Function only work for square matrix
+    n=len(A)
     result = [[0]*n]*n
     if(n==len(B)):
         for i in range(n):
@@ -29,19 +57,5 @@ def MatAdd(A,B): #Function only work for square matrix
     return result
 A=[(3,4),(2,5)]
 B=[(3,4),(2,5)]
-result=MatAdd(A,B)
-printMatrix(result,(0,0),2,2)
-##----------------------- (3) ----------------------------##
-def MatAddPartial(A,B,start,size): #Function only work for square matrix
-    result = [[0]*size]*size
-    for i in range(start,size):
-        for j in range(start,size):
-            for k in range(start,size):
-                result[i][j]=result[i][j]+(int(A[i][k])*int(B[k][j]))  
-    return result                
-A=[(3,4),(2,5)]
-B=[(3,4),(2,5)]
-result=MatAddPartial(A,B,0,2)  
-printMatrix(result,(0,0),2,2)               
-
-                
+# result=MatMul(A,B)
+# printMatrix(result,(0,0),2,2)             
