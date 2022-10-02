@@ -5,7 +5,7 @@ Created on Fri Sep 30 6:30:00 2022
 @author: Hammad Hassan
 """
 ##----------------------- libraries ----------------------------##
-
+import numpy as np
 ##----------------------- (1) ----------------------------##
 def printMatrix(A,starting_Index,row,colums):
      for i in range(starting_Index[0],row):
@@ -60,7 +60,6 @@ B=[(3,4),(2,5)]
 # result=MatMul(A,B)
 # printMatrix(result,(0,0),2,2) 
 #*---------------------- Split the matrix ----------------*#
-import numpy as np
 def split(matrix):
     row, col = matrix.shape
     row2, col2 = row//2, col//2
@@ -80,7 +79,7 @@ def MatMulRecursive(A,B,n):#This function only work for 4-by-4 matrix
 A=np.array([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]])
 B=np.array([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]])
 result=MatMulRecursive(A, B,4)
-print(result)
+# print(result)
 ##----------------------- (5) ----------------------------##           
 def MatMulStrassen(A,B):#This function only work for 4-by-4 matrix
     if(len(A)==1):
@@ -110,6 +109,6 @@ def MatMulStrassen(A,B):#This function only work for 4-by-4 matrix
 A=np.array([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]])
 B=np.array([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]])
 result=MatMulStrassen(A, B)
-print(result)
+# print(result)
     
     
