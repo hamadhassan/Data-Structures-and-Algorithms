@@ -39,7 +39,9 @@ for i in range(1,len(dfS)):
         dist=np.linalg.norm(point1 - point2)
         if(dist<finalDistance):
             finalDistance=dist
-
+##----------------------- (4) ----------------------------##
+            labelIndex=j
+    print("Patient",i,"has symptom of ",label[labelIndex])
 
 
 
