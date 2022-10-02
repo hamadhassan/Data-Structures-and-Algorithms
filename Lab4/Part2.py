@@ -42,10 +42,22 @@ for i in range(1,len(dfS)):
 ##----------------------- (4) ----------------------------##
             labelIndex=j
     print("Patient",i,"has symptom of ",label[labelIndex])
-
-
-
-
+##----------------------- (6) ----------------------------##
+label=df.loc[:,"TYPE"] #Part 1 Get the symptom without label column 
+dfB=df.loc[:, df.columns != 'TYPE'] # Part 2 Get the symptom without label column 
+point1=np.array(dfS.iloc[0]) # Small data row
+point2=np.array(dfB.iloc[0]) # Big data row
+finalDistance = np.linalg.norm(point1 - point2)
+labelIndex=0
+for i in range(1,len(dfS)):
+    point1=np.array(dfS.iloc[i])
+    for j in range(1,len(dfB)):
+        point2=np.array(dfB.iloc[j])
+        dist=np.linalg.norm(point1 - point2)
+        if(dist<finalDistance):
+            finalDistance=dist
+            labelIndex=j
+    print("Patient",i,"has symptom of ",label[labelIndex])
 
 
 
