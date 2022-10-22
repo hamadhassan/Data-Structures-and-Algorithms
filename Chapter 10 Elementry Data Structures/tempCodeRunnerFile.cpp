@@ -1,0 +1,2 @@
+
+        cout<<"Position"<<positon<<endl;

@@ -13,21 +13,21 @@ import pandas as pd
 ##----------------------- (2) ----------------------------##
 # df.groupby(['ActivityDate'])['TrackerDistance'].sum().plot.bar(x='ActivityDate',y='TrackerDistance',rot=0)
 ##----------------------- (3) ----------------------------##
-# df1=pd.read_csv('sleepDay_merged.csv')
-# df1.groupby(['SleepDay'])['TotalTimeInBed'].sum()
-# list1=df1.loc[:,"SleepDay"]
-# list2=df1.loc[:,"TotalTimeInBed"]
-# print(list1,list2)
-# plt.scatter(list1, list2)
-# plt.show()
+df1=pd.read_csv('sleepDay_merged.csv')
+df1.groupby(['SleepDay'])['TotalTimeInBed'].sum()
+list1=df1.loc[:,"SleepDay"]
+list2=df1.loc[:,"TotalTimeInBed"]
+print(list1,list2)
+plt.scatter(list1, list2)
+plt.show()
 ##----------------------- (4) ----------------------------##
-df2=pd.read_csv('dailySteps_merged.csv')
-df2.groupby(['ActivityDay'])['StepTotal'].sum()
-day=df2.loc[:,"ActivityDay"]
-steps=df2.loc[:,"StepTotal"]
-specificDateSteps=[]
-for i in range(len(day)):
-    if(day[i]=="4/12/2016"):
-        specificDateSteps.append(steps[i])
-plt.pie(specificDateSteps)
-plt.show()   
+# df2=pd.read_csv('dailySteps_merged.csv')
+# df2.groupby(['ActivityDay'])['StepTotal'].sum()
+# day=df2.loc[:,"ActivityDay"]
+# steps=df2.loc[:,"StepTotal"]
+# specificDateSteps=[]
+# for i in range(len(day)):
+#     if(day[i]=="4/12/2016"):
+#         specificDateSteps.append(steps[i])
+# plt.pie(specificDateSteps)
+# plt.show()   
