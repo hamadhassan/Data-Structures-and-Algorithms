@@ -27,7 +27,7 @@ void insertAtHead(Node *&head,int d)
 {
     //new node ceate
     Node *temp = new Node(d);
-    temp->next = head; // same temp->next = head;
+    temp->next = head; //temp->next store the address of head
     head = temp;
 }
 void insertAttail(Node *&tail,int d)
