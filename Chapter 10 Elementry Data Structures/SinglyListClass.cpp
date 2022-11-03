@@ -109,7 +109,7 @@ int main(){
     l.insertAtHead(20);
     l.print();
 
-    l.insertAtMiddle(40,2);
+    l.insertAtMiddle(40,1);
     l.print();
 
     l.update(30,2);
