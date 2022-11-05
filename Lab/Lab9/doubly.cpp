@@ -136,4 +136,145 @@ class DoublyLinkedList{
             delete temp;
             size--;
         }
+    }
+    void displayList(){
+        Node *p=head;
+        while(p!=NULL){
+            cout<<p->data<<" ";
+            p=p->next;
+        }
+        cout<<endl;
+    }
+    bool findNode(int data){
+        Node *p=head;
+        while(p!=NULL){
+            if(p->data==data){
+                return true;
+            }
+            p=p->next;
+        }
+        return false;
+    }
+    Node* reverseList(){
+        Node *p=head;
+        Node *q=NULL;
+        Node *r=NULL;
+        while(p!=NULL){
+            r=q;
+            q=p;
+            p=p->next;
+            q->next=r;
+            q->prev=p;
+        }
+        head=q;
+        return head;
+    }
+    Node* sortList(Node *list){
+        Node *p=list;
+        Node *q=NULL;
+        Node *r=NULL;
+        while(p!=NULL){
+            r=q;
+            q=p;
+            p=p->next;
+            q->next=r;
+        }
+        list=q;
+        return list;
+    }
+    Node* removeDuplicates(Node* list){
+        Node *p=list;
+        Node *q=NULL;
+        while(p!=NULL){
+            q=p->next;
+            while(q!=NULL && q->data==p->data){
+                q=q->next;
+            }
+            p->next=q;
+            p=q;
+        }
+        return list;
+    }
+    Node* mergeList(Node *list1,Node *list2){
+        Node *p=list1;
+        Node *q=list2;
+        Node *r=NULL;
+        Node *s=NULL;
+        if(p->data<q->data){
+            r=p;
+            s=p;
+            p=p->next;
+            s->next=NULL;
+        }
+        else{
+            r=q;
+            s=q;
+            q=q->next;
+            s->next=NULL;
+        }
+        while(p!=NULL && q!=NULL){
+            if(p->data<q->data){
+                s->next=p;
+                p->prev=s;
+                s=p;
+                p=p->next;
+                s->next=NULL;
+            }
+            else{
+                s->next=q;
+                q->prev=s;
+                s=q;
+                q=q->next;
+                s->next=NULL;
+            }
+        }
+        if(p!=NULL){
+            s->next=p;
+            p->prev=s;
+        }
+        if(q!=NULL){
+            s->next=q;
+            q->prev=s;
+        }
+        return r;
+    }
+    Node* interestLists(Node* list1, Node* list2){
+        Node *p=list1;
+        Node *q=list2;
+        Node *r=NULL;
+        Node *s=NULL;
+        while(p!=NULL && q!=NULL){
+            if(p->data<q->data){
+                p=p->next;
+            }
+            else if(p->data>q->data){
+                q=q->next;
+            }
+            else{
+                if(r==NULL){
+                    r=p;
+                    s=p;
+                    p=p->next;
+                    q=q->next;
+                    s->next=NULL;
+                }
+                else{
+                    s->next=p;
+                    p->prev=s;
+                    s=p;
+                    p=p->next;
+                    q=q->next;
+                    s->next=NULL;
+                }
+            }
+        }
+        return r;
+    }
 };
+int main(){
+    DoublyLinkedList list;
+    list.insertAtHead(10);
+    list.insertAtHead(20);
+    list.insertAtHead(30);
+    list.displayList();
+}

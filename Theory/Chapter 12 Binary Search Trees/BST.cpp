@@ -104,7 +104,7 @@ class BST{
 int main(){ 
     Node *Node1=new Node(2);
     BST b;
-    Node* r=b.Root;
+    //Node* r=b.Root;
     b.Insert(50);
     b.Insert(30);
     b.Insert(20);
@@ -112,9 +112,9 @@ int main(){
     b.Insert(70);
     b.Insert(60);
     b.Insert(80);
-    b.printInorder(r);
-    Node *a=b.searchIterative(r,10);
+    b.printInorder(b.Root);
+    //Node *a=b.searchIterative(r,10);
     // Node *a=b.search(b.Root,10);
-    cout<<a->data;
+    //cout<<a->data;
     
 }

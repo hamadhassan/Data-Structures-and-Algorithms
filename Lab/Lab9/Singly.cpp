@@ -15,14 +15,14 @@ class Node{
 
 };
 class LinkedList{
-    private:
+    public:
         Node *head;
 
-        ~LinkedList(){
+    ~LinkedList(){
         delete head;
         head=NULL;
     }
-    public:
+    
     bool isEmpty(){
         if(head==NULL){
             return true;
@@ -154,43 +154,43 @@ class LinkedList{
         }
         return list;
     }
-    Node* mergeLists(Node *list1,Node *list2){
-        Node *p=list1;
-        Node *q=list2;
-        Node *r=NULL;
-        Node *s=NULL;
-        while(p!=NULL && q!=NULL){
-            if(p->data<q->data){
-                if(r==NULL){
-                    r=p;
-                    s=r;
-                }
-                else{
-                    r->next=p;
-                    r=r->next;
-                }
-                p=p->next;
-            }
-            else{
-                if(r==NULL){
-                    r=q;
-                    s=r;
-                }
-                else{
-                    r->next=q;
-                    r=r->next;
-                }
-                q=q->next;
-            }
-        }
-        if(p!=NULL){
-            r->next=p;
-        }
-        if(q!=NULL){
-            r->next=q;
-        }
-        return s;
-    }
+    // Node* mergeLists(Node *list1,Node *list2){
+    //     Node *p=list1;
+    //     Node *q=list2;
+    //     Node *r=NULL;
+    //     Node *s=NULL;
+    //     while(p!=NULL && q!=NULL){
+    //         if(p->data<q->data){
+    //             if(r==NULL){
+    //                 r=p;
+    //                 s=r;
+    //             }
+    //             else{
+    //                 r->next=p;
+    //                 r=r->next;
+    //             }
+    //             p=p->next;
+    //         }
+    //         else{
+    //             if(r==NULL){
+    //                 r=q;
+    //                 s=r;
+    //             }
+    //             else{
+    //                 r->next=q;
+    //                 r=r->next;
+    //             }
+    //             q=q->next;
+    //         }
+    //     }
+    //     if(p!=NULL){
+    //         r->next=p;
+    //     }
+    //     if(q!=NULL){
+    //         r->next=q;
+    //     }
+    //     return s;
+    // }
     Node* mergeLists(Node *list1, Node *list2){
         Node *p=list1;
         Node *q=list2;
@@ -256,3 +256,12 @@ class LinkedList{
         return s;
     }
 };
+int main(){
+    LinkedList list1;
+    list1.insertAtHead(1);
+    list1.insertAtHead(2);
+    list1.insertAtHead(3);
+    list1.displayList();
+  
+
+}
