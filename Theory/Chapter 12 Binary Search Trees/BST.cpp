@@ -24,7 +24,7 @@ class Node{
 };
 class BST{
     public:
-    Node* Root;
+    Node* Root=NULL;
     //Traverse : Approach to each node and then print
     void printInorder(Node *p){
         if(p!=NULL){
