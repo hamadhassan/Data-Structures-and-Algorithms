@@ -3,14 +3,17 @@ using namespace std;
 class Node{
     public:
     int data;
+    int height;
     Node* parent;
     Node* left;
     Node* right;
+
     Node(int data){
         this->data=data;
         this->parent=NULL;
         this->left=NULL;
         this->right=NULL;
+        this->height = 1;
     }
     ~Node(){
         delete parent;
@@ -250,6 +253,103 @@ class AVLTree:BST{
     Node* getTree(){
         return root;
     }
+    int height(Node* root){
+        if(root==NULL){
+            return 0;
+        }
+        return root->height;
+    }
+    void leftRotate(Node*x){
+        Node *y=x->right;
+        x->right=y->left;
+        if(y->left!=NULL){
+            y->left->parent=x;
+        }
+        y->parent=x->parent;
+        if(x->parent==NULL){
+            root=y;
+        }
+        else if(x==x->parent->left){
+            x->parent->left=y;
+        }
+        else{
+            x->parent->right=y;
+        }
+        y->left=x;
+        x->parent=y;
+    }
+    void rightRotate(Node*x){
+        Node *y=x->left;
+        x->left=y->right;
+        if(y->right!=NULL){
+            y->right->parent=x;
+        }
+        y->parent=x->parent;
+        if(x->parent==NULL){
+            root=y;
+        }
+        else if(x==x->parent->right){
+            x->parent->right=y;
+        }
+        else{
+            x->parent->left=y;
+        }
+        y->right=x;
+        x->parent=y;
+    }
+    void Insert(int data){
+        Node *z=new Node(data);
+        Node *y=NULL;
+        Node *x=root;
+        while(x!=NULL){
+            y=x;
+            if(z->data<x->data){
+                x=x->left;
+            }
+            else{
+                x=x->right;
+            }
+        }
+        z->parent=y;
+        if(y==NULL){
+            root=z;
+        }
+        else if(z->data<y->data){
+            y->left=z;
+        }
+        else{
+            y->right=z;
+        }
+        z->left=NULL;
+        z->right=NULL;
+        z->height=1;
+        balance(z);
+    }
+    void balance(Node *z){
+        while(z!=NULL){
+            z->height=max(height(z->left),height(z->right))+1;
+            int balanceFactor=height(z->left)-height(z->right);
+            if(balanceFactor>1){
+                if(height(z->left->left)>=height(z->left->right)){
+                    rightRotate(z);
+                }
+                else{
+                    leftRotate(z->left);
+                    rightRotate(z);
+                }
+            }
+            else if(balanceFactor<-1){
+                if(height(z->right->right)>=height(z->right->left)){
+                    leftRotate(z);
+                }
+                else{
+                    rightRotate(z->right);
+                    leftRotate(z);
+                }
+            }
+            z=z->parent;
+        }
+    }
     void visualizeTree(Node *T,int space){
         if(T==NULL){
             return;
@@ -263,10 +363,14 @@ class AVLTree:BST{
         cout<<T->data<<endl;
         visualizeTree(T->left,space);
     }  
+    
    
 };
 int main(){
     AVLTree t;
+    t.Insert(10);
+    t.Insert(20);
+    t.Insert(30);
     t.visualizeTree(t.getTree(),0);
 
 }

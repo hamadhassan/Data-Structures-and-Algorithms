@@ -25,7 +25,7 @@ class Node{
 };
 class BST{
     private:
-    Node* Root=NULL;
+    Node* root=NULL;
     public:
     BST(){
     }
@@ -35,119 +35,23 @@ class BST{
         }
     }
     ~BST(){
-        Root=NULL;
+        root=NULL;
     }
-
-    //is BST exit
-    bool isBST(){
-        if(Root!=NULL){
-            return true;
-        }
-        return false;
-    }   
-    int height(Node* T){
-        Node* x=T;
-        int count=0;
-        while(x!=NULL){
-            if(x->left!=NULL){
-                x=x->left;
-                count++;
-            }
-            if(x->right!=NULL){
-                x=x->right;
-                count++;
-            }
-        }
-        return count;
-    }
-    //Number of Nodes
-    int NumberofNode(){
-        int count=0;
-        Node* x=Root;
-        while(x!=NULL){
-            count++;
-        }
-        return count;
-    } 
-    //Empty Root
     bool isEmpty(){
-        if(Root==NULL){
+        if (root==NULL){
             return true;
-        }
-        return false;
-    }
-    //get root tree
-    Node* getTree(){
-        return Root;
-    }
-     //visualize tree on console
-    void visualizeTree(Node* T,int space){
-        Node* node=T;
-        if(node==NULL){
-            return;
-        }
-        space+=10;
-        visualizeTree(node->left,space);
-        cout<<endl;
-        for(int i=10;i<space;i++){
-            cout<<" ";
-        }
-        cout<<node->data<<endl;
-        visualizeTree(node->right,space);
-    }
-    //Traverse : Approach to each node and then print
-    void printInorder(Node *p){
-        if(p!=NULL){
-            printInorder(p->left);
-            cout<<p->data<<" ";
-            printInorder(p->right);
-        }
-        cout<<endl;
-    }
-    void printPreorder(Node *p){
-        if(p!=NULL){
-            cout<<p->data<<" ";
-            printPreorder(p->left);
-            printPreorder(p->right);
-        }
-    }
-    void printPostorder(Node *p){
-        if(p!=NULL){
-            printPostorder(p->left);
-            printPostorder(p->right);
-            cout<<p->data<<" ";
-        }
-    }
-    //Search Iterative
-    Node * searchIterative(Node *x,int k){
-        while(x!=NULL && k!=x->data){
-            if(k<x->data){
-                x=x->left;
-            }
-            else{
-                x=x->right;
-            }
-        }
-        return x;
-    }
-    //Search Recursive 
-    Node* search(Node *x,int k){
-        if (x == NULL || x->data == k){
-            return x;
-        }
-        if(k< x->data){
-            search(x->left,k);
         }
         else{
-            search(x->right,k);
+            return false;
         }
     }
-
-    //Insertion
+    Node* getTree(){
+        return root;
+    }
     void Insert(int data){
         Node *z =new Node(data);
         Node *y=NULL; //Trailing pointer
-        Node *x=Root; //Parent of BST
+        Node *x=root; //Parent of BST
         while(x!=NULL){
             y=x;
             if(z->data < x->data){
@@ -159,7 +63,7 @@ class BST{
         }
         z->parent=y; //Make the parent
         if(y==NULL){
-            Root=z;
+            root=z;
         }
         else if(z->data < y->data){
             y->left=z;
@@ -168,18 +72,166 @@ class BST{
         y->right=z;
         }
     }
-    void leafNode(Node* T){
-        Node* x=T;
-        if(x==NULL){
-            return;
+    Node* findNode(int data){
+        Node* x=root;
+        while(x!=NULL && x->data!=data){
+            if(data<x->data){
+                x=x->left;
+            }
+            else{
+                x=x->right;
+            }
         }
-        if(x->left==NULL && x->right==NULL){
-            cout<<x->data<<" ";
+        return x;
+    }
+    bool deleteNode(int x){
+        Node* z=findNode(x);
+        if(z==NULL){
+            return false;
         }
-        leafNode(x->left);
-        leafNode(x->right);
+        else{
+            if(z->left==NULL){
+                transplant(z,z->right);
+            }
+            else if(z->right==NULL){
+                transplant(z,z->left);
+            }
+            else{
+                Node* y=treeMinimum(z->right);
+                if(y->parent!=z){
+                    transplant(y,y->right);
+                    y->right=z->right;
+                    y->right->parent=y;
+                }
+                transplant(z,y);
+                y->left=z->left;
+                y->left->parent=y;
+            }
+            delete z;
+            return true;
+        }
+    }
+    void transplant(Node* u,Node* v){
+        if(u->parent==NULL){
+            root=v;
+        }
+        else if(u==u->parent->left){
+            u->parent->left=v;
+        }
+        else{
+            u->parent->right=v;
+        }
+        if(v!=NULL){
+            v->parent=u->parent;
+        }
+    }
+    Node* treeMinimum(Node* x){
+        while(x->left!=NULL){
+            x=x->left;
+        }
+        return x;
     }
 
+    void inOrderTraversal(Node *p){
+        if(p!=NULL){
+            inOrderTraversal(p->left);
+            cout<<p->data<<" ";
+            inOrderTraversal(p->right);
+        }
+        cout<<endl;
+    }
+    void preOrderTraversal(Node *p){
+        if(p!=NULL){
+            cout<<p->data<<" ";
+            preOrderTraversal(p->left);
+            preOrderTraversal(p->right);
+        }
+        cout<<endl;
+    }
+    void postOrderTraversal(Node *p){
+        if(p!=NULL){
+            postOrderTraversal(p->left);
+            postOrderTraversal(p->right);
+            cout<<p->data<<" ";
+        }
+        cout<<endl;
+    }
+    int numberOfNodes(Node *p){
+        if(p==NULL){
+            return 0;
+        }
+        else{
+            return numberOfNodes(p->left)+numberOfNodes(p->right)+1;
+        }
+    }
+    int height(Node* T){
+        if(T==NULL){
+            return 0;
+        }
+        else{
+            int lheight=height(T->left);
+            int rheight=height(T->right);
+            if(lheight>rheight){
+                return lheight+1;
+            }
+            else{
+                return rheight+1;
+            }
+        }
+    }
+    bool isBST(Node *T){
+        if(T==NULL){
+            return true;
+        }
+        else{
+            if(T->left!=NULL && T->left->data>T->data){
+                return false;
+            }
+            if(T->right!=NULL && T->right->data<T->data){
+                return false;
+            }
+            if(!isBST(T->left) || !isBST(T->right)){
+                return false;
+            }
+            return true;
+        }
+    }
+    void leafNodes(Node *T){
+        if(T!=NULL){
+            if(T->left==NULL && T->right==NULL){
+                cout<<T->data<<" ";
+            }
+            leafNodes(T->left);
+            leafNodes(T->right);
+        }
+    }
+    bool isSparseTree(Node *T){
+        if(T==NULL){
+            return true;
+        }
+        else{
+            if(T->left==NULL && T->right==NULL){
+                return true;
+            }
+            if(T->left!=NULL && T->right!=NULL){
+                return false;
+            }
+            return isSparseTree(T->left) && isSparseTree(T->right);
+        }
+    }
+    void visualizeTree(Node *T,int space){
+        if(T==NULL){
+            return;
+        }
+        space+=10;
+        visualizeTree(T->right,space);
+        cout<<endl;
+        for(int i=10;i<space;i++){
+            cout<<" ";
+        }
+        cout<<T->data<<endl;
+        visualizeTree(T->left,space);
+    }  
 };
 class RbTree:BST{
     private:
@@ -462,6 +514,8 @@ int main(){
     r.Insert(5);
     r.Insert(8);
     r.Insert(4);
+    r.visualizeTree(r.root,0);
+    cout<<"--------------------------------------------------------------------------"<<endl;
     r.RBDelete(4);
     r.visualizeTree(r.root,0);
 
