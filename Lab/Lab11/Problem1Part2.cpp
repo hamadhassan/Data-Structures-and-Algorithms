@@ -232,22 +232,41 @@ class BST{
         visualizeTree(T->left,space);
     }  
 };
+class AVLTree:BST{
+    private:
+    Node* root;
+    public:
+    AVLTree(){
+
+    }
+    AVLTree(int arr[],int size){
+        for (int i=0;i<size;i++){
+            Insert(arr[i]);
+        }
+    }
+    ~AVLTree(){
+        delete root;
+    }
+    Node* getTree(){
+        return root;
+    }
+    void visualizeTree(Node *T,int space){
+        if(T==NULL){
+            return;
+        }
+        space+=10;
+        visualizeTree(T->right,space);
+        cout<<endl;
+        for(int i=10;i<space;i++){
+            cout<<" ";
+        }
+        cout<<T->data<<endl;
+        visualizeTree(T->left,space);
+    }  
+   
+};
 int main(){
-    BST tree;
-    int arr[]={10,5,15,3,7,12,18,1,4,6,8,11,13,16,20};
-    int size=sizeof(arr)/sizeof(arr[0]);
-    BST tree2(arr,size);
-    tree2.inOrderTraversal(tree2.getTree());
-    tree2.preOrderTraversal(tree2.getTree());
-    tree2.postOrderTraversal(tree2.getTree());
-    cout<<"Number of nodes: "<<tree2.numberOfNodes(tree2.getTree())<<endl;
-    cout<<"Height of the tree: "<<tree2.height(tree2.getTree())<<endl;
-    cout<<"Is the tree a BST: "<<tree2.isBST(tree2.getTree())<<endl;
-    cout<<"Leaf nodes: ";
-    tree2.leafNodes(tree2.getTree());
-    cout<<endl;
-    cout<<"Is the tree a sparse tree: "<<tree2.isSparseTree(tree2.getTree())<<endl;
-    tree2.visualizeTree(tree2.getTree(),0);
-    tree2.deleteNode(10);
-    tree2.visualizeTree(tree2.getTree(),0);
+    AVLTree t;
+    t.visualizeTree(t.getTree(),0);
+
 }

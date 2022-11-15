@@ -14,13 +14,6 @@ class Node{
         this->left=NULL;
         this->right=NULL;
     }
-    Node(int data,bool color){
-        this->data=data;
-        this->color=color;
-        this->parent=NULL;
-        this->left=NULL;
-        this->right=NULL;
-    }
     ~Node(){
         delete parent;
         delete left;
