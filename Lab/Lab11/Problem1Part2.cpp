@@ -27,8 +27,8 @@ class Node{
 
 class BST{
     private:
-    Node* root=NULL;
     public:
+    Node* root=NULL;
     BST(){
     }
     BST(int arr[],int size){
@@ -237,8 +237,8 @@ class BST{
 };
 class AVLTree:BST{
     private:
-    Node* root;
     public:
+    Node* root=NULL;
     AVLTree(){
 
     }
@@ -297,8 +297,36 @@ class AVLTree:BST{
         y->right=x;
         x->parent=y;
     }
-    void Insert(int data){
-        Node *z=new Node(data);
+    void balanceAVLTree(Node *T){
+        if(T==NULL){
+            return;
+        }
+        else{
+            T->height=max(height(T->left),height(T->right))+1;
+            int balanceFactor=height(T->left)-height(T->right);
+            if(balanceFactor>1){
+                if(height(T->left->left)>=height(T->left->right)){
+                    rightRotate(T);
+                }
+                else{
+                    leftRotate(T->left);
+                    rightRotate(T);
+                }
+            }
+            else if(balanceFactor<-1){
+                if(height(T->right->right)>=height(T->right->left)){
+                    leftRotate(T);
+                }
+                else{
+                    rightRotate(T->right);
+                    leftRotate(T);
+                }
+            }
+            balanceAVLTree(T->parent);
+        }
+    }
+    void insertAVL(int data){
+        Node *z =new Node(data);
         Node *y=NULL;
         Node *x=root;
         while(x!=NULL){
@@ -320,35 +348,8 @@ class AVLTree:BST{
         else{
             y->right=z;
         }
-        z->left=NULL;
-        z->right=NULL;
-        z->height=1;
-        balance(z);
-    }
-    void balance(Node *z){
-        while(z!=NULL){
-            z->height=max(height(z->left),height(z->right))+1;
-            int balanceFactor=height(z->left)-height(z->right);
-            if(balanceFactor>1){
-                if(height(z->left->left)>=height(z->left->right)){
-                    rightRotate(z);
-                }
-                else{
-                    leftRotate(z->left);
-                    rightRotate(z);
-                }
-            }
-            else if(balanceFactor<-1){
-                if(height(z->right->right)>=height(z->right->left)){
-                    leftRotate(z);
-                }
-                else{
-                    rightRotate(z->right);
-                    leftRotate(z);
-                }
-            }
-            z=z->parent;
-        }
+        //z->height=1;
+        balanceAVLTree(z);
     }
     void visualizeTree(Node *T,int space){
         if(T==NULL){
@@ -368,9 +369,9 @@ class AVLTree:BST{
 };
 int main(){
     AVLTree t;
-    t.Insert(10);
-    t.Insert(20);
-    t.Insert(30);
-    t.visualizeTree(t.getTree(),0);
+    t.insertAVL(10);
+    t.insertAVL(20);
+    t.insertAVL(30);
+    t.visualizeTree(t.root,0);
 
 }
