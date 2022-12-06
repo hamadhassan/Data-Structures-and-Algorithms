@@ -121,7 +121,6 @@ int main(){
     g.AddEdge(3,4);
     g.AddEdge(7,4);
     g.BFS(2);
-
-    g.PrintPath(1,4);	
+    g.PrintPath(2,7);	
     return 0;
 }
